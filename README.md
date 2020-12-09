@@ -7,7 +7,7 @@ the [Gentelella website template](https://github.com/afourmy/flask-gentelella) a
 
 ### 1. API
 
-The API receives data from the [REMAR_CIDADÃO Android Application](https://github.com/musevarg/REMAR-android-app).
+The API receives data from the [REMAR_CIDADÃO](https://github.com/musevarg/REMAR-android-app) Android Application.
 
 The API is used to keep a local copy of the json files sent from the Android app, as well as saving them in a [CouchDB](https://couchdb.apache.org) database.
 The CouchDB database is used to handle and parse the data sent to the front-end of the user interface website (more below). The local copies of the files are kept in case of a
