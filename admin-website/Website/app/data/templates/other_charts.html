@@ -1,0 +1,118 @@
+{% extends "base_site.html" %}
+
+{% block title %} Other Charts {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock stylesheets %}
+
+{% block content %}
+<script>
+    console.log("hello");
+    var crabData = {{ crabState|tojson|safe }};
+  
+    var max = 0,
+      min = Number.MAX_VALUE,
+      cc,
+      startColor = [198, 235, 152],
+      endColor = [27, 167, 131],
+      stateColours = {},
+      stateValues = {},
+      hex;
+  
+  //find maximum and minimum values
+  for (cc in crabData)
+  {
+      if (parseFloat(crabData[cc]) > max)
+      {
+          max = parseFloat(crabData[cc]);
+      }
+      if (parseFloat(crabData[cc]) < min)
+      {
+          min = parseFloat(crabData[cc]);
+      }
+  }
+
+  console.log("Max: "+max);
+  console.log("Min: "+min);
+  var index = 0;
+  
+  //set colors according to values of GDP
+  for (cc in crabData)
+  {
+      if (crabData[cc] > 0)
+      {
+        stateColours[cc] = '#';
+          for (var i = 0; i<3; i++)
+          {
+              hex = Math.round(startColor[i]
+                  + (endColor[i]
+                  - startColor[i])
+                  * (crabData[cc] / (max - min))).toString(16);
+  
+              if (hex.length == 1)
+              {
+                  hex = '0'+hex;
+              }
+  
+              stateColours[cc] += (hex.length == 1 ? '0' : '') + hex;
+              stateValues['BR-' + cc.toUpperCase()] = crabData[cc];
+              index++;
+              //stateColours[cc] = "#ff0000"
+          }
+      }
+  }  
+  </script>
+
+  <div class="right_col" role="main">
+    <div class="">
+
+      <div class="clearfix"></div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div>
+            <div class="x_title">
+              <h2>Number Of Uses Per State</h2>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+              <div class="row">
+
+                <div class="col-md-1">
+                  <div class="panel panel-body" style="margin-top:25px">
+                    <canvas id="myCanvas" width="150" height="600"> Your browser does not support the HTML5 canvas tag.
+                    </canvas>
+                  </div>
+                </div>
+
+                <div class="col-md-6" style="padding: 30px; width:50%; margin: auto;">
+                  <p>Zoom</p>
+                  <div id="brazil_map" style="height:600px !important;"></div>
+                </div>
+
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+
+{% block javascripts %}
+  {{ super() }}
+  <!-- jQuery Sparklines -->
+  <script src="{{ url_for('static', filename='vendors/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
+  <!-- JQVMap -->
+  <script src="{{ url_for('static', filename='vendors/jqvmap/dist/jquery.vmap.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/jqvmap/dist/maps/jquery.vmap.brazil.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/jqvmap/dist/maps/jquery.vmap.usa.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
+  <!-- easy-pie-chart -->
+  <script src="{{ url_for('static', filename='vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js') }}"></script>
+{% endblock javascripts %}

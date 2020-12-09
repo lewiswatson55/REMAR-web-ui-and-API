@@ -1,0 +1,52 @@
+{% extends "base_site.html" %}
+
+{% block title %} Login {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+  <!-- Animate.css -->
+  <link href="{{ url_for('static', filename='vendors/animate.css/animate.min.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block body_class %}login{% endblock body_class %}
+
+{% block body %}
+  <div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+      <div class="animate form login_form" style="margin-top: 100px;">
+        <section class="login_content">
+          <form method="post">
+            <h1><b>REMAR</b>_Cidadão</h1>
+            
+            {% for field in login_form if field.widget.input_type != 'hidden'  %}
+            <div>
+                {{ field(class="form-control", placeholder=field.label.text) }}
+            </div>
+            {% endfor %}
+            
+            <div>
+            <button type="submit" style="width:50%;" class="btn btn-default submit" name="login">Log in</button>
+            </div>
+
+            <span style="position: relative;width: 50%;top: 10px;font-size: 15px;color: red;">{{ login_err }}</span>
+
+            <div class="clearfix"></div>
+
+            <div style="margin-top:30px;"><span>&copy Projeto REMAR</span></div>
+
+            <div style="position:relative;width:90%;margin:auto;margin-top: 40px;">
+                  <img style="height:35px;display:inline-block;margin:10px;" src="/static/images/logo_ufsb.png" />
+                  <img style="height:40px;display:inline-block;margin:10px;margin-top:5px;" src="/static/images/logo_napier.png" />
+            </div>
+            
+            </form>
+        </section>
+      </div>
+
+    </div>
+  </div>
+{% endblock body %}
+

@@ -1,0 +1,468 @@
+{% extends "base_site_public2.html" %}
+
+{% block title %}  {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+<!-- Custom Public Theme Style -->
+<link href="/public/static/css/public.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block content %}
+
+  <div role="main" class="main">
+
+
+<!------------------------------------------------>
+<!-- ROW 1 (Welcome Text, Counters and Filters) -->
+<!------------------------------------------------>
+
+<div class="row" style="margin-right: 5px; margin-top: 20px; margin-left: 25px;">
+
+	<!-- Welcome Text Col -->
+
+	<div class="col-md-7">
+      	<div class="inner-block">
+      		<div class="welcome-text">
+	      		<h3 class="block-title">Bem-vindo à página da web do aplicativo <b>REMAR Cidadão</b> da <b>R</b>ede de <b>M</b>onitoramento de <b>A</b>ndadas <b>R</b>eprodutivas dos Caranguejos, <b>REMAR</b></h3>
+	      		<div class="clearfix"></div>
+	      		Aqui você poderá acessar e visualizar as análises quantitativas de andadas reprodutivas de caranguejo-uca (<i>Ucides cordatus</i>) e guaiamum (<i>Cardisoma guanhumi</i>) ao longa da costa brasileira, observadas e relatadas por cientistas cidadãos, que usaram este aplicativo. Somos muito gratos por suas contribuições e esperamos que vocês continuem usando o aplicativo.
+	      		<br>
+	      		A versão 2 do aplicativo REMAR Cidadão pode ser baixado do Google Playstore gratuitamente.
+	      		<br><br>
+	      		Os dados recebidos pelo aplicativo nos ajudarão a avaliar e melhorar a gestão pesqueira e conservação destes importantes recursos pesqueiros. As análises nessa página da web podem ser acessadas por espécie, estado, ano e mês.
+	      		<br><br>Esperamos que vocês gostem de explorar os dados.
+	      		<br><br>
+	      		<div class="crabs"></div>
+      		</div>
+      	</div>
+	</div>
+
+	<!-- Counters and Filters Col-->
+
+	<div class="col-md-5">
+
+		<!-- Stats -->
+		<div class="row" id ="statsBlock">
+			<div class="col-md-12 inner-block">
+
+		    	<div class="block-title">
+			        <h3>Estatística</h3>
+			        <div class="clearfix"></div>
+			    </div>
+
+			    <div class="col-md-12" style="padding-bottom: 20px;">
+
+			      <div class="col-md-4 count_col">
+			      	<div class="row">
+			        <div class="count_top">Número total de acesso do aplicativo</div>
+			    	</div>
+			    	<div class="row countrow">
+			        <div id="totalCount" class="count"></div>
+			    	</div>
+			      </div>
+
+			      <div class="col-md-4 count_col">
+			      	<div class="row">
+			        <div class="count_top">Número total versão básica</div>
+			    	</div>
+			    	<div class="row countrow">
+			        <div id="shortCount" class="count green2"></div>
+			    	</div>
+			      </div>
+
+
+			      <div class="col-md-4 count_col">
+			      	<div class="row">
+			        <div class="count_top">Número total versão avançada</div>
+			    	</div>
+			        <div class="row countrow">
+			        <div id="longCount" class="count green1"></div>
+			    	</div>
+			      </div>
+
+			  	</div>
+
+		  </div>
+		</div>
+
+		<!-- Filters -->
+		<div class="row" id="filtersBlock">
+			<div class="col-md-12">
+			<div class="col-md-12 inner-block">
+				<div class="block-title">
+					<h3>Filtros</h3>
+					<div class="clearfix"></div>
+				</div>
+
+				<h4 style="width: 100%;text-align: center;margin-top: 20px;margin-bottom: 20px;">
+					<i>Use os filtros abaixo para refinar os dados mostrados a você.</i>
+				</h4>
+			
+			<div class="row">
+		    	<div class="col-md-12">
+		            <!-- <div id="datePicker" class="picker" >Período: 
+		                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+		                <b><i id="selectedDate">Todos os anos</i></b>
+		                <b class="caret"></b>
+		            </div> -->
+		            <div id="datePickerDropdown" class="picker dropdown">
+		                <div class="dropdown-toggle" data-toggle="dropdown">Período: 
+			                <b><i id="selectedDate">Todos os anos</i></b>
+			                <b class="caret"></b>
+		                </div>
+						<ul id="datePickerList" class="dropdown-menu">
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="picker dropdown">
+						<div class="dropdown-toggle" data-toggle="dropdown">Espécie: 
+							<b><i id="selectedSpecies">Todas</i></b>
+							<b class="caret"></b>
+						</div>
+						<ul class="dropdown-menu">
+							<li><a onclick="changeSpecies('All')">Todas</a></li>
+							<li><a onclick="changeSpecies('Cardisoma')">Cardisoma</a></li>
+							<li><a onclick="changeSpecies('Ucides')">Ucides</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+		    		<div class="picker dropdown">
+		                <div class="dropdown-toggle" data-toggle="dropdown">Estado: 
+			                <b><i id="selectedState">Todos</i></b>
+			                <b class="caret"></b>
+		                </div>
+						<ul class="dropdown-menu">
+						    <li><a onclick="changeState('All');">Todos</a></li>
+						    <li><a onclick="changeState('Região Norte (AP-PI)');">Região Norte (AP-PI)</a></li>
+						    <li><a onclick="changeState('Região Nordeste (CE-BA)');">Região Nordeste (CE-BA)</a></li>
+						    <li><a onclick="changeState('Região Central/ Leste (BA- RJ)');">Região Central/ Leste (BA- RJ)</a></li>
+						    <li><a onclick="changeState('Região Sul (RJ–SC)');">Região Sul (RJ–SC)</a></li>
+						    <li><a onclick="changeState('Alagoas');">Alagoas</a></li>
+						    <li><a onclick="changeState('Amapá');">Amapá</a></li>
+						    <li><a onclick="changeState('Bahia');">Bahia</a></li>
+						    <li><a onclick="changeState('Ceará');">Ceará</a></li>
+						    <li><a onclick="changeState('Espírito Santo');">Espírito Santo</a></li>
+						    <li><a onclick="changeState('Maranhão');">Maranhão</a></li>
+						    <li><a onclick="changeState('Paraná');">Paraná</a></li>
+						    <li><a onclick="changeState('Paraíba');">Paraíba</a></li>
+						    <li><a onclick="changeState('Pará');">Pará</a></li>
+						    <li><a onclick="changeState('Pernambuco');">Pernambuco</a></li>
+						    <li><a onclick="changeState('Piauí');">Piauí</a></li>
+						    <li><a onclick="changeState('Rio Grande do Norte');">Rio Grande do Norte</a></li>
+						    <li><a onclick="changeState('Rio de Janeiro');">Rio de Janeiro</a></li>
+						    <li><a onclick="changeState('Santa Catarina');">Santa Catarina</a></li>
+						    <li><a onclick="changeState('Sergipe');">Sergipe</a></li>
+						    <li><a onclick="changeState('São Paulo');">São Paulo</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<p id="protectedAreaInfo">Selecione um estado primeiro</p>
+		    		<div id="protectedAreaDropdown" class="picker dropdown">
+		                <div class="dropdown-toggle" data-toggle="dropdown">Área protegida: 
+			                <b><i id="selectedArea">Todas</i></b>
+			                <b class="caret"></b>
+		                </div>
+						<ul id="protectedAreaList" class="dropdown-menu">
+						</ul>
+					</div>
+				</div>
+			</div>
+			</div>
+
+		</div>
+		</div>
+	</div>
+
+</div>
+<!-- END ROW 1 -->
+
+
+<!-- text on top of charts -->
+<div class="row between_block_text">
+	<p style="width:100%; text-align:center; margin-top: -15px; margin-bottom:-10px; font-size:18px;"><b><i>Clique nos gráficos de pizza para ver os detalhes</i></b></p>
+</div>
+<!-- end text on top of charts -->
+
+
+
+<!-------------------------->
+<!-- ROW 2 (4 pie charts) -->
+<!-------------------------->
+
+<div class="row">
+
+	<!-- Pie Chart 1 -->
+    <div class="col-md-3">
+        <div class="inner-block">
+           	<div class="block-title">
+              	<h3>Fase da lua em que aconteceram as andadas</h3>
+              	<div class="clearfix"></div>
+            </div>
+            <div id="chart4Container">
+            	<!-- Chart 4: Moon Phase Where Andada Occurred -->
+            	<canvas id="chart4"></canvas>
+            </div>
+            <div id="chart4legend" class="legend"></div>
+        </div>
+    </div>
+
+	<!-- Pie Chart 2 -->
+    <div class="col-md-3">
+        <div class="inner-block">
+        	<div class="block-title">
+              	<h3>Período do dia em que as andadas foram observadas</h3>
+              	<div class="clearfix"></div>
+            </div>
+        	<div>
+            	<!-- Chart 1: When did Andada happen? -->
+            	<canvas id="chart1"></canvas>
+            </div>
+            <div id="chart1legend" class="legend"></div>
+        </div>
+    </div>
+
+	<!-- Pie Chart 3 -->
+    <div class="col-md-3">
+        <div class="inner-block">
+            <div class="block-title">
+              	<h3>Ambiente onde as andadas foram observadas</h3>
+              	<div class="clearfix"></div>
+            </div>
+            <div id="chart2Container">
+            	<!-- Chart 2: Habitat where Andada was observed -->
+            	<canvas id="chart2"></canvas>
+            </div>
+            <div id="chart2legend" class="legend"></div>
+        </div>
+     </div>
+
+	<!-- Pie Chart 4 -->
+    <div class="col-md-3">
+        <div class="inner-block">
+            <div class="block-title">
+	            <h3>Profissão dos usuários do Remar Cidadão</h3>
+	            <div class="clearfix"></div>
+	        </div>
+	        <div id="chart5Container">
+	           	<!-- Chart 5: Profession -->
+	            <canvas id="chart5"></canvas>
+	        </div>
+	        <div id="chart5legend" class="legend"></div>
+        </div>
+    </div>
+
+</div>
+<!-- END ROW 2 -->
+
+
+
+<!---------------------------------->
+<!-- ROW 3 (2 Pie charts and map) -->
+<!---------------------------------->
+
+<div class="row" style="margin-left:-5px; margin-right: 12px;">
+
+	<!-- Map -->
+    <div class="col-md-6 map" style="margin-top:15px;">
+        <div class="inner-block" style="margin-left: 30px;margin-right: -5px;">
+		    <div class="block-title row">
+		        <h3>Número total de acesso do aplicativo por estado</h3><h4><i>Clique nos estados no mapa para ver os detalhes</i></h4>
+		        <div class="clearfix"></div>
+		    </div>
+
+		    <div class="row maprow">
+	            <div class="col-md-1">
+	                <div style="margin-top:25px">
+		                <!-- The legend is drawn on a canvas -->
+		                <canvas id="chart6legend" width="100" height="520"></canvas>
+	                </div>
+	            </div>
+
+	            <div class="col-md-11">
+			        <!-- Chart 6: Brazil Map (How many uses per state) [FYI: map uses a div, not a canvas] -->
+			        <div id="chart6" style="margin-left:10px;"></div>
+			    </div>
+			</div>
+        </div>
+    </div>
+  	
+  	<!-- the two pies are in their own col -->
+	<div class="col-md-6" style="margin-top: 14px;">
+
+		<div id="twoPies" class="row">
+
+		<!-- Pie Chart 5 -->
+	    <div class="col-md-6">
+	        <div class="inner-block">
+	            <div class="block-title">
+	              <h3>Observação de andadas feitas dentro ou fora de unidades de conservação</h3>
+	              <div class="clearfix"></div>
+	            </div>
+	            <div id="chart3Container">
+	            	<!-- Chart 3: Protected Area -->
+	            	<canvas id="chart3"></canvas>
+	            </div>
+	            <div id="chart3legend" class="legend"></div>
+	        </div>
+	    </div>
+
+        <!-- Pie Chart 6 -->
+	    <div class="col-md-6">
+	        <div class="inner-block">
+	            <div class="block-title">
+	                <h3>Categoria de área protegida onde as andadas foram observadas</h3>
+	                <div class="clearfix"></div>
+	            </div>
+	            <div id="chart7Container">
+	            	<!-- Chart 7: Name of the protected area -->
+	            	<canvas id="chart7"></canvas>
+	            </div>
+	            <div id="chart7legend" class="legend"></div>
+	        </div>
+	    </div>
+
+	    </div>
+
+	    <div class="row" id="aboutus">
+	    	<div class="col-md-12">
+	    		<div class="inner-block" style="display: table; margin-left: -15px;">
+		    		<div class="read_more">
+			    		<i style="width:100%; text-align:center; font-size:18px;" id="copyright">
+			    		<b>Projeto REMAR</b>
+			    		<br>
+			    		Se você pretende utilizar as informações desta página, por favor informe a REMAR pelo e-mail <a href="mailto:remar.quest@gmail.com">remar.quest@gmail.com</a>, forneça os devidos créditos para a REMAR e apresente o link desta página.
+			    		</i>
+			    		<br>
+			    		<a id="read_more_btn" type="button" class="btn btn-success" data-toggle="modal" data-target="#read_more_modal">Saiba mais sobre REMAR</a>
+		    		</div>
+	    		</div>
+	    	</div>
+	    </div>
+
+ 	</div>
+
+</div>
+
+</div> <!-- END OF MAIN DIV -->
+
+<!-- Modal -->
+<div class="modal fade" id="read_more_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Mais sobre REMAR</h3>
+      </div>
+      <div class="modal-body">
+      	<b>Por que saber quando ocorrem andadas?</b>
+      	<br><br>
+		Durante as andadas os caranguejos estão se reproduzindo, e é justamente neste período que eles ficam expostos fora de suas tocas e podem ser capturados em grandes quantidades. Por isso, para permitir o uso mais sustentável destes recursos pesqueiros e para conservar as espécies, a legislação proíbe na maioria dos estados brasileiros as capturas durante as andadas.  A REMAR desenvolveu uma ferramenta para prever se, em um dado ano e mês, quando a andada ocorrerá em relação à fase da lua (após a lua cheia ou após a lua nova, ou após ambas as fases da lua). As previsões baseando-se em ciclos geofísicos, ciclos de maré e o conhecimento obtido através da análise científica de dados de ocorrências de andadas obtidos pela própria REMAR entre 2006 e 2019 no campo, em várias áreas do litoral brasileiro, incluindo unidades de conservação, por pesquisadores e gestores de nove instituições.  A IN N 1/2020 do MAPA for subsidarad pelas previsões da REMAR. Neste ano, diferentemente dos anos anteriores, os períodos de proibição froam somente pior 6 dias apossa as luas cheias para 2020 foi baseada em previsões da fase lunar que os caranguejos irão andar na temporada 2020, fornecidas pela Rede de Monitoramento de Andadas Reprodutivas de Caranguejos – REMAR, coordenada pela professora Karen Diele, da Edinburgh Napier University da Grã-Bretanha, e pelo professor Anders Schmidt, da Universidade Federal do Sul da Bahia. Fazem parte da rede ainda pesquisadores de universidades de todas as regiões do país, além de gestores e pesquisadores do ICMBio, bem como determinação dos próximos passos de atuação para definição de suspensões de extrativismo 2021 em diante.
+		<br><br>
+		As previsões de andadas feitos pela está ferramenta subidaram    na maioria dos estados, a captura é proibida por precaução após ambas as fases. Quando ocorre fiscalização em um período sem andada, coletores de caranguejo deixam de trabalhar ou têm seus caranguejos apreendidos sem necessidade. Adicionalmente, operações de fiscalização desnecessárias consistem em um desperdício de recursos públicos que poderiam ser aplicados na gestão e conservação dos caranguejos.
+		 <br><br>
+		A REMAR realiza suas previsões baseando-se em ciclos geofísicos, ciclos de maré e conhecimento obtido através da análise científica de seus dados de ocorrências de andadas obtidos pela REMAR desde 2006 em várias áreas do litoral brasileiro, incluindo unidades de conservação. Estes dados alimentam cálculos de uma ferramenta de previsão de andadas de caranguejo-uçá desenvolvida pela REMAR, que indica se as andadas irão ocorrer após a lua cheia ou após a lua nova, ou após ambas as fases da lua.
+		<br><br>
+		IN N 1/2020 do MAPA, que foi subsidiada pela REMAR; bem como determinação dos próximos passos de atuação para definição de suspensões de extrativismo 2021 em diante.
+		<br><br>
+		<b>O objetivo da REMAR</b>
+		<br><br>
+ 		Nosso objetivo é resolver os problemas socioeconômicos atuais decorrentes do estabelecimento de períodos errados de proibição de captura de caranguejos, através do desenvolvimento de uma ferramenta que permita a previsão certeira das fases da lua em que eles irão andar, em todo Brasil. Assim será possível evitar a proibição da captura em períodos sem andada e isso trará algumas importantes vantagens: Extrativistas e comerciantes poderão continuar obtendo renda neste período; Serão evitados conflitos entre órgãos fiscalizadores e extrativistas; Será evitado o desperdício de recursos públicos com fiscalizações desnecessárias.
+ 		<br><br>
+ 		<b>Por que o caranguejo-uçá e o guaiamum?</b>
+ 		<br><br>
+ 		O caranguejo-uçá, <i>Ucides cordatus</i>, é uma espécie que vive em tocas na lama e se alimenta basicamente de folhas de mangues, sendo, portanto, de grande importância para a teia alimentar do manguezal. Já o guaiamum, <i>Cardisoma guanhumi</i>, cava suas tocas em áreas de restinga, um dos ambientes mais ameaçados pela ocupação humana desordenada. Ambas as espécies realizam andadas, quando então ficam extremamente vulneráveis à captura, não só por extrativistas profissionais, mas pelas pessoas em geral, o que pode comprometer a sustentabilidade das suas pescarias.
+ 		<br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Date Modal -->
+<div class="modal fade" id="dateModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Selecionar as datas</h4>
+			</div>
+			<div class="modal-body">
+				<p>Selecione as datas clicando nas caixas abaixo.</p>
+				<p>Data de início (dd/mm/aaaa)</p>
+				<div class="input-prepend input-group">
+					<span class="add-on input-group-addon">
+						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+					</span>
+					<input type="text" style="width: 200px" id="start-date" class="form-control" />
+				</div>
+				<p>Data final (dd/mm/aaaa)</p>
+				<div class="input-prepend input-group">
+					<span class="add-on input-group-addon">
+					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+					</span>
+					<input type="text" style="width: 200px" id="end-date" class="form-control" />
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal" onclick="customDateRange();">Submeter</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}
+
+
+{% block javascripts %}
+  {{ super() }}
+  <script>var records = {{ record|tojson|safe }}</script>
+  <!-- Chart.js -->
+  <script src="{{ url_for('static', filename='vendors/Chart.js/dist/Chart.min.js') }}"></script>
+  <!-- gauge.js -->
+  <script src="{{ url_for('static', filename='vendors/gauge.js/dist/gauge.min.js') }}"></script>
+  <!-- Skycons -->
+  <script src="{{ url_for('static', filename='vendors/skycons/skycons.js') }}"></script>
+  <!-- Flot -->
+  <script src="{{ url_for('static', filename='vendors/Flot/jquery.flot.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/Flot/jquery.flot.pie.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/Flot/jquery.flot.time.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/Flot/jquery.flot.stack.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/Flot/jquery.flot.resize.js') }}"></script>
+  <!-- Flot plugins -->
+  <script src="{{ url_for('static', filename='vendors/flot.orderbars/js/jquery.flot.orderBars.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/flot-spline/js/jquery.flot.spline.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/flot.curvedlines/curvedLines.js') }}"></script>
+  <!-- DateJS -->
+  <script src="{{ url_for('static', filename='vendors/DateJS/build/date.js') }}"></script>
+  <!-- JQVMap -->
+  <script src="{{ url_for('static', filename='vendors/jqvmap/dist/jquery.vmap.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
+
+  <!-- jVectorMap library -->
+  <script src="{{ url_for('static', filename='vendors/jqvmap/dist/jquery.vmap.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/jqvmap/dist/maps/jquery.vmap.brazil.js') }}"></script>
+
+  <!-- Custom Full JS -->
+  <script src="/full/static/js/map.js"></script>
+  <script src="/full/static/js/moon.js"></script>
+  <script src="/full/static/js/charts.js"></script>
+
+{% endblock javascripts %}

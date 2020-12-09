@@ -1,0 +1,365 @@
+/*Top bar*/
+
+.navbar_title {
+	margin-left: 0px;
+}
+
+.navbar_title a {
+	display: none;
+}
+
+.nav-md .site_title{
+	margin-left: 0px;
+}
+
+.site_title a {
+	display: none;
+}
+
+/* Main Page (below top bar) */
+
+.main {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 94vh; 
+}
+
+/* Chart Blocks */
+
+h3 {
+	font-size: 22px;
+}
+
+.row{
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.col-md-3{
+	padding: 15px;
+}
+
+.inner-block{
+	border: 2px solid #3caf0f;
+	padding: 10px;
+	background-color: #f8fff7;
+}
+
+.block-title{
+	height: 80px;
+	border-bottom: 2px solid #3caf0f;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.legend {
+	margin: 0 auto;
+	margin-top: 45px;
+	width: 90%;
+	min-height: 40px;
+	font-size: 15px;
+}
+
+.chart-footer{
+	border-top: 1px solid #b1b1b1;
+	margin-top: 10px;
+	padding
+}
+
+.picker{
+	width: 100%;
+	padding: 5px 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    height: auto;
+    background-color: white;
+    float: right;
+    margin-top: 5px;
+    font-size: 15px;
+    left: 0px;
+	position: relative;
+}
+
+.count {
+	font-size: 38px;
+    font-weight: bold;
+    line-height: 1.65857
+}
+
+/* Date picker */
+
+.daterangepicker .ranges li.active,
+.daterangepicker .ranges li:hover {
+	background: #55c28f;
+	border: 1px solid #3caf0f;
+}
+
+.daterangepicker .ranges li {
+    color: #000000;
+}
+
+.ranges li {
+    font-size: 13px;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    background-color: #55c28f;
+    color: #fff;
+}
+
+.daterangepicker td.in-range {
+    background: #E4E7EA;
+    color: #3caf0f;
+}
+
+.map{
+	display: block;
+}
+
+.countrow{
+	margin-top:-20px;
+	margin-bottom:-5px;
+}
+
+.welcome-text{
+	font-size: 17px;
+}
+
+.welcome-text .block-title{
+	height: 80px;
+	padding-bottom: 0px;
+    margin-bottom: 15px;
+}
+
+#row0{
+	width: 100%;
+}
+
+.dropdown-menu>li>a {
+    color: #000000;
+    font-size: 17px;
+}
+
+.dropdown-menu>li>a:hover {
+	background-color: #55c28f;
+	color: white;
+}
+
+.crabs{
+	position: relative;
+    margin: 0 auto;
+    background-image: url(/static/images/mock-screenshot.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 70%;
+    height: 450px;
+}
+
+.count_top{
+	margin-bottom: 5px;
+	font-size: 15px;
+}
+
+.counters{
+	width: 41.6%;
+	margin-top: 0px;
+	margin-left: 0px;
+}
+
+.read_more{
+	position: relative;
+	text-align: center;
+    vertical-align: middle;
+}
+
+#copyright{
+	display: block;
+    margin-top: 20px;
+}
+
+#read_more_btn{
+	width: auto;
+	margin-top: 10px;
+	background-color: #3caf0f;
+	color: white;
+	border: 1px solid #ffffff;
+}
+
+.count_col{
+	width: auto;
+	left: 0px;
+}
+
+.between_block_text{
+	display: block;
+}
+
+.col-md-6 .inner-block{
+	margin-bottom: 0px;
+}
+
+#statsBlock{
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 0px;
+}
+
+#filtersBlock{
+	margin-left:10px;
+	margin-right: 10px;
+}
+
+#twoPies{
+	margin-left: 5px;
+	margin-right: 0px;
+	margin-top: 1px;
+}
+
+#aboutus{
+	margin-left: 20px;
+    margin-right: -1.5px;
+}
+
+#aboutus .col-md-12 .innerblock{
+	width: 100%;
+}
+
+#chart6{
+	height:1500%;
+	width:1500%;
+}
+
+#logo_napier{
+	height: 40px;
+	margin-top: -2px;
+}
+
+
+/* Screens smaller than 1230px */
+
+@media only screen and (max-width: 1370px) {
+
+h3 {
+	font-size: 19px;
+}
+
+.legend {
+	font-size: 12px;
+}
+
+.countrow{
+	margin-bottom:0px;
+}
+
+}
+
+
+
+/* Mobile (hide map) */
+
+@media only screen and (max-width: 991px) {
+
+	.inner-block{
+		height: auto !important;
+	}
+
+	#chart6{
+		height:80%;
+		width:80%;
+	}
+
+	.map {
+		display: none;
+	}
+
+	#row0{
+		width: 80vw;
+	}
+
+	.col-md-12{
+		width: 78.5vw;
+	}
+
+	.col-md-3{
+		width: 88vw;
+	}
+
+	.col-md-6{
+		width: 85.5vw;
+	}
+
+	.col-md-7{
+		width: 83.5vw;
+	}
+
+	/*.crabs{
+		display: none;
+	}*/
+
+	.welcome-text .block-title{
+		height: auto;
+		padding-bottom: 15px;
+	    margin-bottom: 25px;
+	}
+
+	.counters{
+		width: 94%;
+		margin-top: 20px;
+		margin-left: 10px;
+	}
+
+	.count_col{
+		width: 90%;
+		left: -35px;
+	}
+
+	.countrow{
+		margin-top: -35px;
+	}
+
+	.picker{
+		width: 85%;
+		left: -55px;
+	}
+
+	.between_block_text{
+		display: none;
+	}
+
+	.col-md-6 .inner-block{
+		margin-bottom: 30px;
+	}
+
+	#statsBlock{
+		margin-left: 0px;
+		margin-top: 20px;
+	}
+
+	#filtersBlock{
+	    margin-left: -10px;
+	    margin-right: 0px;
+	}
+
+	#twoPies{
+		margin-left: 20px;
+		margin-right: 0px;
+	}
+
+	#aboutus{
+		margin-left: 35px;
+	}
+
+	#aboutus .col-md-12 .inner-block{
+		width: 80.5vw;
+	}
+
+	#logo_napier{
+		height: 30px;
+		margin-top: -2px;
+	}
+
+}
