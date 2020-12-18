@@ -29,7 +29,7 @@ The public interface aims to give some insight to the REMAR_CIDADÃO app users.
 
 It allows them to see selected information about the data that was collected from all users of the app.
 
-Selected screenshots below, or the website can be seen [here](http://crabdata.napier.ac.uk).
+Selected screenshots below, the website can be seen [here](http://crabdata.napier.ac.uk).
 
 ![](https://raw.githubusercontent.com/musevarg/REMAR-web-ui-and-API/master/images/web-scr1.PNG)
 
