@@ -18,7 +18,7 @@ Start your virtualenv then install the external libraries using the supplied req
 
 Now create a logs/ directory to store log files from the running app and create an empty log file ready for data:
 
-    $ mdkir var
+    $ mkdir var
     $ touch var/crabblerweb.log
 
 Now create the data/ directories where uploaded json files can be stored:
