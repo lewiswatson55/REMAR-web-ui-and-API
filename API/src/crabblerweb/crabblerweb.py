@@ -20,7 +20,7 @@ app.config['ip_address'] = '0.0.0.0'
 import logging
 from logging.handlers import RotatingFileHandler
 
-log_pathname = '/etc/crab/logs/crabbler_web.log'
+log_pathname = 'var/crabbler_web.log'
 file_handler = RotatingFileHandler(log_pathname, maxBytes=1024* 1024 * 10 , backupCount=1024)
 file_handler.setLevel( app.config['DEBUG'] )
 formatter = logging.Formatter("%(levelname)s | %(asctime)s |  %(module)s | %(funcName)s | %(message)s")
